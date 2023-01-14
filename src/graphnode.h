@@ -22,12 +22,14 @@ private:
                              ensuring their exclusivity to Graphnode.
     */
     // data handles (owned)  // unique pointers
-    // std::vector<GraphEdge *> _childEdges;  // edges to subsequent nodes
     std::vector<std::unique_ptr<GraphEdge>> _childEdges;
 
     // data handles (not owned)
     std::vector<GraphEdge *> _parentEdges; // edges to preceding nodes 
-    ChatBot /***/_chatBot;
+    /*
+        My comment - Task 5: Can't be a pointer anymore.
+    */
+    ChatBot _chatBot;
 
     ////
     //// EOF STUDENT CODE
@@ -51,12 +53,18 @@ public:
     // proprietary functions
     void AddToken(std::string token); // add answers to list
     void AddEdgeToParentNode(GraphEdge *edge);
-    void AddEdgeToChildNode(/*GraphEdge *edge*/std::unique_ptr<GraphEdge> edge);
+    /*
+        My comment - Task 4: must be a unique pointer
+    */
+    void AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge);
 
     //// STUDENT CODE
     ////
 
-    void MoveChatbotHere(ChatBot /***/chatbot);
+    /*
+        My comment - Task 5: In parameter cannot be a pointer anymore
+    */
+    void MoveChatbotHere(ChatBot chatbot);
 
     ////
     //// EOF STUDENT CODE

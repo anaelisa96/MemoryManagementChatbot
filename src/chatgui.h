@@ -20,7 +20,6 @@ private:
     My Comment - Task 1 : make _chatLogic an exclusive resource to class ChatbotPanelDialog
                           using an appropriate unique smart pointer
     */
-    // ChatLogic *_chatLogic;
     std::unique_ptr<ChatLogic> _chatLogic;
 
     ////

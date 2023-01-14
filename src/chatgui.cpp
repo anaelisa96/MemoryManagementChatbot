@@ -110,7 +110,6 @@ END_EVENT_TABLE()
 ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     : wxScrolledWindow(parent, id)
 {
-    std::cout << "-> Start of ChatBotPanelDialog Constructor\n";
     // sizer will take care of determining the needed scroll size
     _dialogSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(_dialogSizer);
@@ -120,9 +119,6 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
 
     //// STUDENT CODE
     ////
-
-    // create chat logic instance
-    //_chatLogic = new ChatLogic(); 
     /* 
     My Comment - Task 1 : Create a new unique pointer to wrap a ChatLogic object
     */
@@ -134,24 +130,19 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
 
     // load answer graph from file
     _chatLogic->LoadAnswerGraphFromFile(dataPath + "src/answergraph.txt");
-    std::cout << "-> End of ChatPanelDialog Constructor\n";
     
-
     ////
     //// EOF STUDENT CODE
 }
 
 ChatBotPanelDialog::~ChatBotPanelDialog()
 {
-    std::cout << "-> ChatBotPanelDialog Destructor\n";
     //// STUDENT CODE
     ////
     /* 
     My Comment - Task 1 : Smart pointers automatically free their allocated memory
-                          We do not have to worry about detleting the instance
+                          We do not have to worry about deleting the instance
     */
-    // delete _chatLogic;
-
     ////
     //// EOF STUDENT CODE
 }

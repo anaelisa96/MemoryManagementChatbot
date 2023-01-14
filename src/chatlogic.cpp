@@ -14,16 +14,13 @@
 // Constructor of ChatLogic
 ChatLogic::ChatLogic()
 {
-    std::cout << "--> Chat Logic Constructor\n";
     //// STUDENT CODE
     ////
-
-    // create instance of chatbot
-    //_chatBot = new ChatBot("../images/chatbot.png");
-
-    // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    //_chatBot->SetChatLogicHandle(this);
-
+    /*
+        My Comment - Task 5: ChatLogic must have no ownership relation with ChatBot, 
+                              so it can't be responsible for this instance memory allocation
+                              or deallocation.
+    */
     ////
     //// EOF STUDENT CODE
 }
@@ -31,35 +28,18 @@ ChatLogic::ChatLogic()
 // Destructor of ChatLogic
 ChatLogic::~ChatLogic()
 {
-    std::cout << "--> ChatLogic Destructor\n";
     //// STUDENT CODE
     ////
-
-    // delete chatbot instance
-    //delete _chatBot;
+    /*
+        My Comment - Task 5: ChatLogic must have no ownership relation with ChatBot, 
+                              so it can't be responsible for this instance memory allocation
+                              or deallocation.
+    */
     /*
         My Comment - Task 3: Since _nodes are now unique smart pointers we do not need to delete them "manually"
     */
     /*
-    // delete all nodes
-    for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
-    {
-        
-        delete *it;
-    }
-    */
-   
-    /*
-        My Comment - Task 4 - This had to be commented because it generated the following error during runtime:
-        *** Error in `./membot': free(): invalid pointer: 0x0000000001bccd50 ***
-        TO BE UNDERSTOOD... :(
-    */
-    /*
-    // delete all edges
-    for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    {
-        delete *it;
-    }
+        My Comment - Task 4 - _edges vector does not exist anymore
     */
     ////
     //// EOF STUDENT CODE
@@ -150,8 +130,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                         // create new element if ID does not yet exist
                         if (newNode == _nodes.end())
                         {
-                            std::cout << "---> New node: ";
-                            _nodes.emplace_back(/*new GraphNode(id)*/std::make_unique<GraphNode>(id));
+                            _nodes.emplace_back(std::make_unique<GraphNode>(id));
                             newNode = _nodes.end() - 1; // get iterator to last element
 
                             // add all answers to current node
@@ -184,22 +163,20 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             /*
                                 My Comment - Task 3: Adapt function inner parameters of type Graphnode because arguments must be raw pointers
                                 My Comment - Task 4: Change creation of edge raw pointer to unique smart pointer. Adapt in arguments in following
-                                                     functions call. This because AddEdgeToChildNode needs now a unique smart pointer as argument.
+                                                     functions call.
                             */
                             // create new edge
-                            //GraphEdge *edge = new GraphEdge(id);
-                            std::cout << "---> New edge:";
                             std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
                             edge->SetChildNode((*childNode).get());
                             edge->SetParentNode((*parentNode).get());
-                            //_edges.push_back(/*edge*/edge.get());
+                
 
                             // find all keywords for current node
                             AddAllTokensToElement("KEYWORD", tokens, *edge);
 
                             // store reference in child node and parent node
-                            ((*childNode).get())->AddEdgeToParentNode(/*edge*/edge.get());
-                            ((*parentNode).get())->AddEdgeToChildNode(/*edge*/std::move(edge));
+                            ((*childNode).get())->AddEdgeToParentNode(edge.get());
+                            ((*parentNode).get())->AddEdgeToChildNode(std::move(edge));
                         }
 
                         ////
@@ -248,17 +225,9 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
     /*
         My Comment - Task 5: Create a local ChatBot instance on the stack.
-                             Use move semantics to pass the ChatBot instance into the root node.
+                            Use move semantics to pass the ChatBot instance into the root node.
     */
 
-    // add chatbot to graph root node
-    /*_chatBot->SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(_chatBot);*/
-
-    /*ChatBot myChatBot = ChatBot("../images/chatbot.png");
-    myChatBot.SetChatLogicHandle(this);
-    myChatBot.SetRootNode(rootNode);
-    rootNode->MoveChatbotHere(std::move(myChatBot));*/
     ChatBot chatBot = ChatBot("../images/chatbot.png");
     chatBot.SetChatLogicHandle(this);               
     chatBot.SetRootNode(rootNode);

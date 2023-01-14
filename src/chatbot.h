@@ -31,6 +31,10 @@ public:
 
     //// STUDENT CODE
     ////
+    /* 
+        My Comment - Task 2 : Declare ChatBot Copy Constructor, Assignment Operator,
+                             Move Constructor and Move Assignment Operator.
+    */
     ChatBot(ChatBot &source);
     ChatBot &operator=(ChatBot &source);
     ChatBot(ChatBot &&source);

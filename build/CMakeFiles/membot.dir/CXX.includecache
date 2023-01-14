@@ -6,6 +6,24 @@
 
 #IncludeRegexTransform: 
 
+/home/workspace/ChatBotProj/src/chatbot.cpp
+iostream
+-
+random
+-
+algorithm
+-
+ctime
+-
+chatlogic.h
+/home/workspace/ChatBotProj/src/chatlogic.h
+graphnode.h
+/home/workspace/ChatBotProj/src/graphnode.h
+graphedge.h
+/home/workspace/ChatBotProj/src/graphedge.h
+chatbot.h
+/home/workspace/ChatBotProj/src/chatbot.h
+
 /home/workspace/ChatBotProj/src/chatbot.h
 wx/bitmap.h
 -
@@ -20,30 +38,6 @@ wx/wx.h
 memory
 -
 
-/home/workspace/ChatBotProj/src/chatlogic.cpp
-fstream
--
-sstream
--
-iostream
--
-vector
--
-iterator
--
-tuple
--
-algorithm
--
-graphedge.h
-/home/workspace/ChatBotProj/src/graphedge.h
-graphnode.h
-/home/workspace/ChatBotProj/src/graphnode.h
-chatbot.h
-/home/workspace/ChatBotProj/src/chatbot.h
-chatlogic.h
-/home/workspace/ChatBotProj/src/chatlogic.h
-
 /home/workspace/ChatBotProj/src/chatlogic.h
 vector
 -
@@ -52,27 +46,11 @@ string
 chatgui.h
 /home/workspace/ChatBotProj/src/chatgui.h
 
-/home/workspace/ChatBotProj/src/graphedge.cpp
-graphnode.h
-/home/workspace/ChatBotProj/src/graphnode.h
-graphedge.h
-/home/workspace/ChatBotProj/src/graphedge.h
-iostream
--
-
 /home/workspace/ChatBotProj/src/graphedge.h
 vector
 -
 string
 -
-iostream
--
-
-/home/workspace/ChatBotProj/src/graphnode.cpp
-graphedge.h
-/home/workspace/ChatBotProj/src/graphedge.h
-graphnode.h
-/home/workspace/ChatBotProj/src/graphnode.h
 iostream
 -
 
