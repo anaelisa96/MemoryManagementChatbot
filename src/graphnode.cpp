@@ -6,11 +6,13 @@
 
 GraphNode::GraphNode(int id)
 {
+    std::cout << "----> GraphNode Constructor with _chatBot address " << &_chatBot << "\n";
     _id = id;
 }
 
 GraphNode::~GraphNode()
 {
+    std::cout << "---> GraphNode Destructor with _chatBot address: " << &_chatBot << "  ";
     //// STUDENT CODE
     ////
     /* 
@@ -19,7 +21,6 @@ GraphNode::~GraphNode()
         ChatLogic destructor is already deleting this variable which 
         is first created by ChatLogic constructor.
     */
-    // delete _chatBot; 
 
     ////
     //// EOF STUDENT CODE
@@ -44,12 +45,14 @@ void GraphNode::AddEdgeToChildNode(/*GraphEdge *edge*/std::unique_ptr<GraphEdge>
 ////
 void GraphNode::MoveChatbotHere(ChatBot /***/chatbot)
 {
+    //std::cout << "Address of _chatBot in MoveChatbotHere: " << &_chatBot << "\n";
     _chatBot = std::move(chatbot);
-    _chatBot.SetCurrentNode(this);    
+    _chatBot.SetCurrentNode(this);
 }
 
 void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
+    //std::cout << "Address of _chatBot in MoveChatbotToNewNode: " << &_chatBot << "\n";
     newNode->MoveChatbotHere(std::move(_chatBot));
     //_chatBot = nullptr; // invalidate pointer at source
 }
@@ -60,7 +63,6 @@ GraphEdge *GraphNode::GetChildEdgeAtIndex(int index)
 {
     //// STUDENT CODE
     ////
-
     return (_childEdges[index]).get();
 
     ////

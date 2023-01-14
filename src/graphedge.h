@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 
+#include <iostream>
+
 class GraphNode; // forward declaration
 
 class GraphEdge
@@ -21,12 +23,14 @@ private:
 public:
     // constructor / desctructor
     GraphEdge(int id);
+    // TO REMOVE
+    ~GraphEdge();
 
     // getter / setter
     int GetID() { return _id; }
     void SetChildNode(GraphNode *childNode);
     void SetParentNode(GraphNode *parentNode);
-    GraphNode *GetChildNode() { return _childNode; }
+    GraphNode *GetChildNode() {return _childNode; }
     std::vector<std::string> GetKeywords() { return _keywords; }
 
     // proprietary functions

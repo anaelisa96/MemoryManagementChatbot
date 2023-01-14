@@ -14,6 +14,7 @@
 // Constructor of ChatLogic
 ChatLogic::ChatLogic()
 {
+    std::cout << "--> Chat Logic Constructor\n";
     //// STUDENT CODE
     ////
 
@@ -30,6 +31,7 @@ ChatLogic::ChatLogic()
 // Destructor of ChatLogic
 ChatLogic::~ChatLogic()
 {
+    std::cout << "--> ChatLogic Destructor\n";
     //// STUDENT CODE
     ////
 
@@ -148,6 +150,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                         // create new element if ID does not yet exist
                         if (newNode == _nodes.end())
                         {
+                            std::cout << "---> New node: ";
                             _nodes.emplace_back(/*new GraphNode(id)*/std::make_unique<GraphNode>(id));
                             newNode = _nodes.end() - 1; // get iterator to last element
 
@@ -177,7 +180,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             // get iterator on incoming and outgoing node via ID search
                             auto parentNode = std::find_if(_nodes.begin(), _nodes.end(), [&parentToken](std::unique_ptr<GraphNode> &node) { return node->GetID() == std::stoi(parentToken->second); });
                             auto childNode = std::find_if(_nodes.begin(), _nodes.end(), [&childToken](std::unique_ptr<GraphNode> &node) { return node->GetID() == std::stoi(childToken->second); });
-
+                    
                             /*
                                 My Comment - Task 3: Adapt function inner parameters of type Graphnode because arguments must be raw pointers
                                 My Comment - Task 4: Change creation of edge raw pointer to unique smart pointer. Adapt in arguments in following
@@ -185,13 +188,14 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
                             */
                             // create new edge
                             //GraphEdge *edge = new GraphEdge(id);
+                            std::cout << "---> New edge:";
                             std::unique_ptr<GraphEdge> edge = std::make_unique<GraphEdge>(id);
                             edge->SetChildNode((*childNode).get());
                             edge->SetParentNode((*parentNode).get());
                             //_edges.push_back(/*edge*/edge.get());
 
                             // find all keywords for current node
-                            AddAllTokensToElement("KEYWORD", tokens, *edge.get());
+                            AddAllTokensToElement("KEYWORD", tokens, *edge);
 
                             // store reference in child node and parent node
                             ((*childNode).get())->AddEdgeToParentNode(/*edge*/edge.get());
@@ -220,7 +224,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
     //// STUDENT CODE
     ////
-
     // identify root node
     GraphNode *rootNode = nullptr;
     for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
@@ -256,14 +259,10 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     myChatBot.SetChatLogicHandle(this);
     myChatBot.SetRootNode(rootNode);
     rootNode->MoveChatbotHere(std::move(myChatBot));*/
-    
-    ChatBot chatBot = ChatBot("../images/chatbot.png"); 
-    chatBot.SetChatLogicHandle(this);                  
-    chatBot.SetRootNode(rootNode);        
+    ChatBot chatBot = ChatBot("../images/chatbot.png");
+    chatBot.SetChatLogicHandle(this);               
+    chatBot.SetRootNode(rootNode);
     rootNode->MoveChatbotHere(std::move(chatBot));
-    
-    
-
 
     ////
     //// EOF STUDENT CODE
