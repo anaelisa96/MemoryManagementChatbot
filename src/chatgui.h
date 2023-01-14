@@ -21,7 +21,7 @@ private:
                           using an appropriate unique smart pointer
     */
     // ChatLogic *_chatLogic;
-    std::unique_ptr<ChatLogic> ;
+    std::unique_ptr<ChatLogic> _chatLogic;
 
     ////
     //// EOF STUDENT CODE
